@@ -1,6 +1,6 @@
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { useState } from "react";
-import { auth } from "../firebase";
+import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
+import { useEffect, useState } from "react";
+import { auth } from "../../firebase";
 import { useNavigate } from "react-router-dom";
 
 export function SignupForm() {
@@ -11,8 +11,16 @@ export function SignupForm() {
 
   const navigate = useNavigate();
 
+  useEffect(() => {
+    getAuth().onAuthStateChanged((user) => {
+      if (user) navigate("/");
+    });
+  }, []);
+
   function onSubmitHandler(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+
+    if (password !== confPass) return setError("Passwords do not match");
 
     createUserWithEmailAndPassword(auth, email, password).catch((error) => {
       console.error(error);
@@ -27,11 +35,7 @@ export function SignupForm() {
 
   return (
     <>
-      {error && (
-        <span className="text-2xl font-bold pb-4">
-          Something went wrong try again
-        </span>
-      )}
+      {error && <span className="text-2xl font-bold pb-4">{error}</span>}
       <form className="max-w-sm" onSubmit={(e) => onSubmitHandler(e)}>
         <div className="mb-5">
           <label

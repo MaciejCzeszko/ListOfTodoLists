@@ -1,10 +1,19 @@
-import { SignupForm } from "../components/SignupForm";
+import { Link } from "react-router-dom";
+import { Wrapper } from "../components/Wrapper";
+import { SignupForm } from "../components/signins/SignupForm";
 
 export function Signup() {
   return (
-    <div className="flex flex-col items-center mx-auto bg-gray-50 p-8 px-16 rounded-lg shadow-md">
+    <Wrapper>
       <h1 className="mb-8 text-2xl font-bold">Sign Up!</h1>
       <SignupForm />
-    </div>
+      <p className="mt-4">
+        You already have an account?{" "}
+        <Link to={"/login"} className="text-blue-700 font-bold">
+          Login
+        </Link>{" "}
+        here!
+      </p>
+    </Wrapper>
   );
 }
