@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Wrapper } from "../components/Wrapper";
-import { LoginForm } from "../components/signins/LoginForm";
+import { LoginForm } from "../components/signinforms/LoginForm";
 
 export function Login() {
   return (

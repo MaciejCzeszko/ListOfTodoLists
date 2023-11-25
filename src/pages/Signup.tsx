@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Wrapper } from "../components/Wrapper";
-import { SignupForm } from "../components/signins/SignupForm";
+import { SignupForm } from "../components/signinforms/SignupForm";
 
 export function Signup() {
   return (
