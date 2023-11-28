@@ -2,14 +2,14 @@ import { Route, Routes } from "react-router-dom";
 import { Signup } from "./pages/Signup";
 import { Login } from "./pages/Login";
 import { Dashboard } from "./pages/Dashboard";
-import TodoList from "./components/dashboard/TodoList";
+import { MainContent } from "./components/dashboard/maincontent/MainContent";
 import { Account } from "./components/dashboard/account/Account";
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<Dashboard />}>
-        <Route path="/" element={<TodoList />} />
+        <Route path="/" element={<MainContent />} />
         <Route path="/account" element={<Account />} />
       </Route>
       <Route path="/signup" element={<Signup />} />
