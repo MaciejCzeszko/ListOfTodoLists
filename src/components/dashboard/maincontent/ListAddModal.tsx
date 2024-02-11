@@ -3,6 +3,7 @@ import { Modal } from "../Modal";
 import { addDoc, collection, doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../../firebase";
 import { getAuth } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 export function ListAddModal({
   isModalOpen,
@@ -14,6 +15,7 @@ export function ListAddModal({
   const [listId, setListId] = useState("");
   const [listName, setListName] = useState("");
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   async function onAddList(e: any, listId: string) {
     e.preventDefault();
@@ -27,6 +29,7 @@ export function ListAddModal({
       await updateDoc(doc(db, "listoflists", listId), {
         users: updatedUsers,
       });
+      navigate(0);
     } else {
       console.log("List does not exist");
     }
@@ -47,6 +50,7 @@ export function ListAddModal({
     try {
       await addDoc(collection(db, "listoflists"), newDocData);
       setIsModalOpen(false);
+      navigate(0);
     } catch (err) {
       setError("Error adding document: " + err);
     }

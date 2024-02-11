@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import Card from "./Card";
+import { Card } from "./Card";
 
 type WrapperChildren = {
   children: ReactNode;
